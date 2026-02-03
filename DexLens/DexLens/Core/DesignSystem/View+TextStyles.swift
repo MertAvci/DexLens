@@ -74,19 +74,19 @@ private struct TextStyleModifier: ViewModifier {
     private func color(for style: ColorStyle) -> Color {
         switch style {
         case .primary:
-            return Color("dsPrimary")
+            return .primary
         case .primaryMuted:
-            return Color("dsPrimaryMuted")
+            return .primaryMuted
         case .success:
-            return Color("dsSuccess")
+            return .success
         case .error:
-            return Color("dsError")
+            return .error
         case .warning:
-            return Color("dsWarning")
+            return .warning
         case .textPrimary:
-            return Color("dsTextPrimary")
+            return .textPrimary
         case .textSecondary:
-            return Color("dsTextSecondary")
+            return .textSecondary
         case .white:
             return .white
         }
