@@ -15,7 +15,7 @@ struct ContentView: View {
                     VStack(spacing: 24) {
                         Image(systemName: "globe")
                             .font(Font.custom("Roboto-Regular", size: 64))
-                            .foregroundStyle(Color("dsPrimary"))
+                            .foregroundStyle(Color.primary)
                         
                         Text("DexLens")
                             .textStyle(.title1, color: .textPrimary)
@@ -75,7 +75,7 @@ struct ContentView: View {
             Spacer()
             Image(systemName: "arrow.up.right")
                 .font(.title2)
-                .foregroundStyle(Color("dsSuccess"))
+                .foregroundStyle(Color.success)
         }
         .padding()
         .background(Color.surfaceSecondary)
@@ -100,7 +100,7 @@ struct ContentView: View {
                 .foregroundStyle(Color.error)
         }
         .padding()
-        .background(Color("dsSurfaceSecondary"))
+        .background(Color.surfaceSecondary)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
