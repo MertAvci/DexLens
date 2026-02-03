@@ -1,5 +1,9 @@
 import Foundation
 
+/// Represents network-related errors that can occur during API requests.
+///
+/// This enum provides type-safe error handling for all network operations
+/// and conforms to `LocalizedError` for user-friendly error messages.
 enum NetworkError: Error, LocalizedError {
     case invalidURL
     case invalidResponse

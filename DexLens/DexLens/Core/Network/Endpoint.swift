@@ -1,12 +1,17 @@
 import Foundation
 
+/// Defines the contract for creating API endpoints.
+///
+/// Conforming types specify the base URL, path, HTTP method, headers,
+/// and parameters for an API request. The protocol provides default
+/// implementations for URL construction and URLRequest creation.
 protocol Endpoint {
     var baseURL: URL { get }
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
     var parameters: [String: Any]? { get }
-    
+
     var url: URL? { get }
 }
 
@@ -37,6 +42,7 @@ extension Endpoint {
     }
 }
 
+/// Represents standard HTTP methods for API requests.
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"

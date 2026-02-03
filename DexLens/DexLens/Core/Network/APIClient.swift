@@ -1,9 +1,26 @@
 import Foundation
 
+/// Defines the contract for making network requests.
+///
+/// This protocol enables easy mocking and testing by providing a
+/// generic fetch method that returns decoded data from any endpoint.
 protocol APIClientProtocol {
     func fetch<T: Decodable>(endpoint: Endpoint) async throws -> T
 }
 
+/// Concrete implementation of `APIClientProtocol` using URLSession.
+///
+/// This client handles all network operations including:
+/// - URL request construction from Endpoints
+/// - Response validation (status code checks)
+/// - JSON decoding using Swift's Codable protocol
+/// - Error handling with NetworkError types
+///
+/// Example:
+/// ```swift
+/// let client = APIClient()
+/// let data: MyModel = try await client.fetch(endpoint: MyEndpoint())
+/// ```
 final class APIClient: APIClientProtocol {
     private let session: URLSession
     private let decoder: JSONDecoder
@@ -13,6 +30,12 @@ final class APIClient: APIClientProtocol {
         self.decoder = decoder
     }
 
+    /// Fetches and decodes data from the specified endpoint.
+    ///
+    /// - Parameter endpoint: The endpoint to fetch data from.
+    /// - Returns: Decoded data of type `T`.
+    /// - Throws: `NetworkError` if the request fails, response is invalid,
+    ///           or decoding fails.
     func fetch<T: Decodable>(endpoint: Endpoint) async throws -> T {
         guard let request = endpoint.urlRequest else {
             throw NetworkError.invalidURL
