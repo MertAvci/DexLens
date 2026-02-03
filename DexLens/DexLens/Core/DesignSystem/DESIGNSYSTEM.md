@@ -60,8 +60,8 @@ Provides the design foundation for DexLens including typography, fonts, colors, 
 | `success` | `#059669` (Emerald 600) | `#10B981` (Emerald 500) | Gains, positive values |
 | `error` | `#DC2626` (Red 600) | `#EF4444` (Red 500) | Losses, negative values |
 | `warning` | `#D97706` (Amber 600) | `#F59E0B` (Amber 500) | Alerts, warnings |
-| `surface` | `#FFFFFF` (White) | `#0C4A6E` (Sky 950) | Backgrounds, cards |
-| `surfaceSecondary` | `#ECFEFF` (Sky 50) | `#164E63` (Cyan 950) | Alternating backgrounds |
+| `surface` | `#FFFFFF` (White) | `#0F172A` (Dark Slate 900) | Backgrounds, cards |
+| `surfaceSecondary` | `#ECFEFF` (Sky 50) | `#111827` (Slate 900) | Alternating backgrounds |
 | `textPrimary` | `#083344` (Cyan 950) | `#CFFAFE` (Cyan 100) | Headings, body |
 | `textSecondary` | `#64748B` (Slate 500) | `#94A3B8` (Slate 400) | Captions, placeholders |
 | `border` | `#E0F2FE` (Sky 100) | `#155E75` (Cyan 900) | Dividers, borders |
