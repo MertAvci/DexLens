@@ -15,23 +15,20 @@ struct ContentView: View {
                     VStack(spacing: 24) {
                         Image(systemName: "globe")
                             .font(Font.custom("Roboto-Regular", size: 64))
-                            .foregroundStyle(Color.primary)
+                            .foregroundStyle(Color("dsPrimary"))
                         
                         Text("DexLens")
-                            .font(Font.custom("Roboto-Bold", size: 32))
-                            .foregroundStyle(Color.textPrimary)
+                            .textStyle(.title1, color: .textPrimary)
                         
                         Text("Design System Preview")
-                            .font(Font.custom("Roboto-Regular", size: 17))
-                            .foregroundStyle(Color.textSecondary)
+                            .textStyle(.subheadline, color: .textSecondary)
                     }
                     
                     Divider()
                     
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Quick Examples")
-                            .font(Font.custom("Roboto-Medium", size: 22))
-                            .foregroundStyle(Color.textPrimary)
+                            .textStyle(.title2, color: .textPrimary)
                         
                         VStack(spacing: 12) {
                             primaryButton
@@ -43,7 +40,7 @@ struct ContentView: View {
                 .padding()
             }
             .navigationTitle("Welcome")
-            .background(Color.surface)
+            .background(Color("dsSurface"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Colors") {
@@ -57,30 +54,28 @@ struct ContentView: View {
     private var primaryButton: some View {
         Button(action: {}) {
             Text("Connect Wallet")
-                .font(Font.custom("Roboto-Medium", size: 17))
-                .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(LinearGradient.primaryGradient)
                 .cornerRadius(12)
         }
+        .textStyle(.bodyBold, color: .white)
         .padding(.horizontal)
+        .background(LinearGradient.primaryGradient)
+        .cornerRadius(12)
     }
     
     private var successCard: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("+12.5%")
-                    .font(Font.custom("Roboto-Bold", size: 22))
-                    .foregroundStyle(Color.success)
+                    .textStyle(.title2, color: .success)
                 Text("Portfolio Gains")
-                    .font(Font.custom("Roboto-Regular", size: 15))
-                    .foregroundStyle(Color.textSecondary)
+                    .textStyle(.caption1, color: .textSecondary)
             }
             Spacer()
             Image(systemName: "arrow.up.right")
                 .font(.title2)
-                .foregroundStyle(Color.success)
+                .foregroundStyle(Color("dsSuccess"))
         }
         .padding()
         .background(Color.surfaceSecondary)
@@ -95,11 +90,9 @@ struct ContentView: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("-3.2%")
-                    .font(Font.custom("Roboto-Bold", size: 22))
-                    .foregroundStyle(Color.error)
+                    .textStyle(.title2, color: .error)
                 Text("Daily Loss")
-                    .font(Font.custom("Roboto-Regular", size: 15))
-                    .foregroundStyle(Color.textSecondary)
+                    .textStyle(.caption1, color: .textSecondary)
             }
             Spacer()
             Image(systemName: "arrow.down.right")
@@ -107,7 +100,7 @@ struct ContentView: View {
                 .foregroundStyle(Color.error)
         }
         .padding()
-        .background(Color.surfaceSecondary)
+        .background(Color("dsSurfaceSecondary"))
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
