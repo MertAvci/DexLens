@@ -9,13 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(spacing: 24) {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                
+                Text("DexLens")
+                    .font(Typography.title1)
+                
+                Text("Design System Preview")
+                    .font(Typography.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .navigationTitle("Welcome")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink("Font Preview") {
+                        FontPreviewView()
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
