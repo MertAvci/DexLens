@@ -11,7 +11,7 @@ extension LinearGradient {
     
     static var successGradient: LinearGradient {
         LinearGradient(
-            gradient: Gradient(colors: [Color("dsSuccess").opacity(0.8), Color("dsSuccess")]),
+            gradient: Gradient(colors: [.success.opacity(0.8), .surface]),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -19,7 +19,7 @@ extension LinearGradient {
     
     static var deepOceanGradient: LinearGradient {
         LinearGradient(
-            gradient: Gradient(colors: [Color("dsPrimary"), Color("dsSurface")]),
+            gradient: Gradient(colors: [.primary, .surface]),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -27,7 +27,7 @@ extension LinearGradient {
     
     static func deepOceanGradient(opacity: Double = 1.0) -> LinearGradient {
         LinearGradient(
-            gradient: Gradient(colors: [Color("dsPrimary").opacity(opacity), Color("dsSurface").opacity(opacity)]),
+            gradient: Gradient(colors: [.primary.opacity(opacity), .surface.opacity(opacity)]),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
