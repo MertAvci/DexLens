@@ -1,6 +1,6 @@
 # Design System
 
-Provides the design foundation for DexLens including typography and fonts.
+Provides the design foundation for DexLens including typography, fonts, colors, and gradients.
 
 ## Components
 
@@ -10,6 +10,9 @@ Provides the design foundation for DexLens including typography and fonts.
 | `Font+Roboto.swift` | Font extension for easy Roboto access |
 | `Typography.swift` | Typography scale with predefined styles |
 | `FontPreviewView.swift` | Preview view to verify all font weights and styles |
+| `Color+DesignSystem.swift` | Color extension for semantic color access |
+| `Gradient+DesignSystem.swift` | Gradient extension with predefined gradients |
+| `ColorPreviewView.swift` | Preview view for all colors, gradients, and UI components |
 
 ## Font Weights
 
@@ -46,6 +49,32 @@ Provides the design foundation for DexLens including typography and fonts.
 - `caption1` - 12pt Regular
 - `caption2` - 11pt Regular
 
+## Colors (Deep Ocean Theme)
+
+### Semantic Colors
+
+| Color | Light Mode | Dark Mode | Usage |
+|-------|-----------|-----------|-------|
+| `primary` | `#0891B2` (Cyan 600) | `#06B6D4` (Cyan 500) | Brand, buttons, active states |
+| `primaryMuted` | `#67E8F9` (Cyan 200) | `#22D3EE` (Cyan 400) | Secondary buttons |
+| `success` | `#059669` (Emerald 600) | `#10B981` (Emerald 500) | Gains, positive values |
+| `error` | `#DC2626` (Red 600) | `#EF4444` (Red 500) | Losses, negative values |
+| `warning` | `#D97706` (Amber 600) | `#F59E0B` (Amber 500) | Alerts, warnings |
+| `surface` | `#FFFFFF` (White) | `#0C4A6E` (Sky 950) | Backgrounds, cards |
+| `surfaceSecondary` | `#ECFEFF` (Sky 50) | `#164E63` (Cyan 950) | Alternating backgrounds |
+| `textPrimary` | `#083344` (Cyan 950) | `#CFFAFE` (Cyan 100) | Headings, body |
+| `textSecondary` | `#64748B` (Slate 500) | `#94A3B8` (Slate 400) | Captions, placeholders |
+| `border` | `#E0F2FE` (Sky 100) | `#155E75` (Cyan 900) | Dividers, borders |
+| `overlay` | `#000000` (60% opacity) | `#FFFFFF` (20% opacity) | Modals, sheets |
+
+## Gradients
+
+| Gradient | Colors | Usage |
+|----------|---------|-------|
+| `primaryGradient` | Cyan 500 → Cyan 600 | Hero sections, major buttons |
+| `successGradient` | Emerald 500 → Emerald 600 | Success cards, positive highlights |
+| `deepOceanGradient` | Cyan 500 → Sky 950 | Backgrounds, cards |
+
 ## Usage
 
 ### Using Font Extension
@@ -54,50 +83,40 @@ Text("Hello, World!")
     .font(.roboto(17, weight: .medium))
 ```
 
-### Using Typography Scale
+### Using Typography
 ```swift
 Text("Welcome to DexLens")
-    .font(Typography.title1)
-
-Text("This is body text")
-    .font(Typography.body)
+    .font(Font.custom("Roboto-Bold", size: Typography.title1))
 ```
 
-## Setup Instructions
+### Using Colors
+```swift
+// Access via Color extension
+Text("Welcome")
+    .foregroundStyle(Color.primary)
 
-To complete the font integration, you need to add the font files to the Xcode project:
+Button("Connect") {}
+    .background(Color.primary)
 
-1. **Open `DexLens.xcodeproj` in Xcode**
+Card()
+    .background(Color.surface)
+    .border(Color.border, width: 1)
+```
 
-2. **Add font files to the target:**
-   - Right-click on `DexLens` folder in the project navigator
-   - Select "Add Files to DexLens..."
-   - Navigate to `DexLens/Core/DesignSystem/Fonts/`
-   - Select all `*.ttf` files
-   - Make sure "Copy items if needed" is checked
-   - Make sure "Add to target: DexLens" is checked
-   - Click "Add"
+### Using Gradients
+```swift
+// Access via LinearGradient extension
+VStack {
+    Text("Hero")
+}
+.background(LinearGradient.primaryGradient)
 
-3. **Register fonts in Info.plist (modern Xcode approach):**
-   - Select the `DexLens` project in the navigator
-   - Select the `DexLens` target
-   - Go to the "Info" tab
-   - Add a new entry under "Custom iOS Target Properties":
-     - Key: `Fonts provided by application` (Array)
-     - Items (add each):
-       - `Roboto-Thin.ttf`
-       - `Roboto-Light.ttf`
-       - `Roboto-Regular.ttf`
-       - `Roboto-Medium.ttf`
-       - `Roboto-Bold.ttf`
-       - `Roboto-Black.ttf`
+Button("Primary Action") {}
+    .background(LinearGradient.successGradient)
+```
 
-4. **Build and Run**
-   - Clean the build folder (Cmd + Shift + K)
-   - Build and run (Cmd + R)
-
-5. **Verify fonts:**
-   - Navigate to `FontPreviewView` in the app to see all font weights and typography styles
+### Using ColorPreviewView
+Run the app and tap "Color Preview" to see all colors, gradients, and UI components.
 
 ## Font Source
 
