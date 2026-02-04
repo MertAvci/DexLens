@@ -126,7 +126,12 @@ After completing **ANY** development work (builds, code edits, or changes), AI a
 - Use `.task` modifier for initial data loading
 - Use `.refreshable` for pull-to-refresh functionality
 - Support dark mode with proper color assets
-- Use custom `textStyle()` modifier for typography
+- **Use custom `textStyle()` modifier for ALL text styling** - NEVER use `.font()` or `.foregroundStyle()` directly on Text
+  - Available in `Core/DesignSystem/View+TextStyles.swift`
+  - Example: `Text("Title").textStyle(.headline, color: .textPrimary)`
+  - TextStyle options: `.largeTitle`, `.title1`, `.title2`, `.title3`, `.headline`, `.body`, `.bodyBold`, `.callout`, `.subheadline`, `.subheadlineBold`, `.footnote`, `.footnoteBold`, `.caption1`, `.caption2`
+  - ColorStyle options: `.primary`, `.primaryMuted`, `.success`, `.error`, `.warning`, `.textPrimary`, `.textSecondary`, `.white`
+  - This ensures consistent typography (Roboto font family) and colors across the app
 
 ### Documentation
 - Add documentation comments for public protocols and methods
