@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="NO" userDefinedModelVersionIdentifier="">
+    <entity name="WalletEntity" representedClassName="WalletEntity" syncable="YES">
+        <attribute name="walletAddress" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="firstSeen" attributeType="Date" defaultDateTimeInterval="0"/>
+        <attribute name="lastSeen" attributeType="Date" defaultDateTimeInterval="0"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="lastPositionCheck" optional="YES" attributeType="Date"/>
+        <relationship name="positions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PositionEntity" inverseName="wallet" inverseEntity="PositionEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="walletAddress"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PositionEntity" representedClassName="PositionEntity" syncable="YES">
+        <attribute name="coin" attributeType="String"/>
+        <attribute name="side" attributeType="String"/>
+        <attribute name="size" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="entryPrice" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="leverage" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="unrealizedPnl" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="lastChecked" attributeType="Date" defaultDateTimeInterval="0"/>
+        <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WalletEntity" inverseName="positions" inverseEntity="WalletEntity"/>
+    </entity>
+    <entity name="MarketStatsEntity" representedClassName="MarketStatsEntity" syncable="YES">
+        <attribute name="coin" attributeType="String"/>
+        <attribute name="totalLongs" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="totalShorts" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="longShortRatio" attributeType="Double" defaultValueString="0.0"/>
+        <attribute name="updatedAt" attributeType="Date" defaultDateTimeInterval="0"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="coin"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>

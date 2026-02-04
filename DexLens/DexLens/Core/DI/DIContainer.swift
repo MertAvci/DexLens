@@ -20,21 +20,6 @@ import Foundation
 /// ### App setup (composition root)
 /// Call `configure()` once at app startup to wire all dependencies:
 ///
-/// ```swift
-/// @main
-/// struct MyApp: App {
-///     init() {
-///         DIContainer.shared.configure()
-///     }
-///
-///     var body: some Scene {
-///         WindowGroup {
-///             ContentView()
-///         }
-///     }
-/// }
-/// ```
-///
 /// ### Registering services
 /// Services are registered by protocol type:
 ///
@@ -90,6 +75,20 @@ final class DIContainer {
 
         let perpetualService = HyperliquidPerpetualService(apiClient: apiClient)
         register(PerpetualServiceProtocol.self, instance: perpetualService)
+
+        // MARK: - Wallet Discovery Infrastructure
+
+        let persistenceController = PersistenceController.shared
+        register(PersistenceController.self, instance: persistenceController)
+
+        let walletRepository = WalletRepositoryImpl(persistenceController: persistenceController)
+        register(WalletRepository.self, instance: walletRepository)
+
+        let walletDiscoveryService = WalletDiscoveryService(
+            apiClient: apiClient,
+            repository: walletRepository
+        )
+        register(WalletDiscoveryServiceProtocol.self, instance: walletDiscoveryService)
     }
 
     /// Resolves a previously registered dependency.
