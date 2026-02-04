@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct DexLensApp: App {
+    init() {
+        DIContainer.shared.register()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

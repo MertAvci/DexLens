@@ -21,9 +21,9 @@ import Foundation
 /// - **Protocol-based**: Services are registered and resolved by protocol type
 final class DIContainer {
     static let shared = DIContainer()
-
+    
     private var services: [String: Any] = [:]
-
+    
     private init() {}
 
     /// Registers a service instance with a specific protocol type.
@@ -55,5 +55,14 @@ final class DIContainer {
     func resolve<T>(_ type: T.Type) -> T? {
         let key = String(describing: type)
         return services[key] as? T
+    }
+    
+    /// Registers all app services and dependencies.
+    func register() {
+        let apiClient = APIClient()
+        let homeService = HomeService(apiClient: apiClient)
+        let homeViewModel = HomeViewModel(service: homeService)
+        
+        register(HomeViewModel.self, instance: homeViewModel)
     }
 }
