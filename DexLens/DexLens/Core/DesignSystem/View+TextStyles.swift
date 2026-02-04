@@ -31,64 +31,64 @@ enum ColorStyle {
 private struct TextStyleModifier: ViewModifier {
     let style: TextStyle
     let color: ColorStyle
-    
+
     func body(content: Content) -> some View {
         content
             .font(font(for: style))
             .foregroundStyle(color(for: color))
     }
-    
+
     private func font(for style: TextStyle) -> Font {
         switch style {
         case .largeTitle:
-            return Font.custom("Roboto-Bold", size: 34)
+            Font.custom("Roboto-Bold", size: 34)
         case .title1:
-            return Font.custom("Roboto-Bold", size: 28)
+            Font.custom("Roboto-Bold", size: 28)
         case .title2:
-            return Font.custom("Roboto-Bold", size: 22)
+            Font.custom("Roboto-Bold", size: 22)
         case .title3:
-            return Font.custom("Roboto-Medium", size: 20)
+            Font.custom("Roboto-Medium", size: 20)
         case .headline:
-            return Font.custom("Roboto-Medium", size: 17)
+            Font.custom("Roboto-Medium", size: 17)
         case .body:
-            return Font.custom("Roboto-Regular", size: 17)
+            Font.custom("Roboto-Regular", size: 17)
         case .bodyBold:
-            return Font.custom("Roboto-Bold", size: 17)
+            Font.custom("Roboto-Bold", size: 17)
         case .callout:
-            return Font.custom("Roboto-Regular", size: 16)
+            Font.custom("Roboto-Regular", size: 16)
         case .subheadline:
-            return Font.custom("Roboto-Regular", size: 15)
+            Font.custom("Roboto-Regular", size: 15)
         case .subheadlineBold:
-            return Font.custom("Roboto-Medium", size: 15)
+            Font.custom("Roboto-Medium", size: 15)
         case .footnote:
-            return Font.custom("Roboto-Regular", size: 13)
+            Font.custom("Roboto-Regular", size: 13)
         case .footnoteBold:
-            return Font.custom("Roboto-Medium", size: 13)
+            Font.custom("Roboto-Medium", size: 13)
         case .caption1:
-            return Font.custom("Roboto-Regular", size: 12)
+            Font.custom("Roboto-Regular", size: 12)
         case .caption2:
-            return Font.custom("Roboto-Regular", size: 11)
+            Font.custom("Roboto-Regular", size: 11)
         }
     }
-    
+
     private func color(for style: ColorStyle) -> Color {
         switch style {
         case .primary:
-            return .primary
+            .primary
         case .primaryMuted:
-            return .primaryMuted
+            .primaryMuted
         case .success:
-            return .success
+            .success
         case .error:
-            return .error
+            .error
         case .warning:
-            return .warning
+            .warning
         case .textPrimary:
-            return .textPrimary
+            .textPrimary
         case .textSecondary:
-            return .textSecondary
+            .textSecondary
         case .white:
-            return .white
+            .white
         }
     }
 }

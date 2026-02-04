@@ -13,12 +13,12 @@ struct Coin: Identifiable {
     let athPrice: Double?
     let athDate: String?
     let lastUpdated: String
-    var imageURL: URL? = nil
+    var imageURL: URL?
     var isImageLoading: Bool = false
-    
+
     var formattedPrice: String {
-            "$" + price.formatted(
-                .number.precision(.fractionLength(2))
-            )
-        }
+        "$" + price.formatted(
+            .number.precision(.fractionLength(2))
+        )
+    }
 }

@@ -26,6 +26,67 @@ xcodebuild -project DexLens.xcodeproj -scheme DexLens test -only-testing:DexLens
 xcodebuild -project DexLens.xcodeproj -scheme DexLens test -only-testing:DexLensTests/<TestTarget>/<TestClass>/<testMethod>
 ```
 
+## SwiftFormat Commands
+
+```bash
+# Format all Swift files in project
+swiftformat .
+
+# Check formatting without making changes
+swiftformat --lint .
+
+# Preview formatting changes
+swiftformat --dry-run .
+
+# Format specific file
+swiftformat path/to/file.swift
+
+# Format with verbose output
+swiftformat --verbose .
+
+# Lint with detailed output
+swiftformat --lint --verbose .
+```
+
+## AI Assistant Workflow (REQUIRED)
+
+### Post-Build/Edit Checklist (MANDATORY)
+
+After completing **ANY** development work (builds, code edits, or changes), AI assistants MUST:
+
+1. **Run SwiftFormat lint to check code formatting:**
+   ```bash
+   swiftformat --lint .
+   ```
+
+2. **Report results:**
+   - If no issues: Display "✅ SwiftFormat check passed"
+   - If issues found: Report them as warnings with file names and rule violations
+   - **NEVER** auto-fix formatting issues
+   - **NEVER** modify code without explicit user instruction
+   - Suggest running `swiftformat .` only if user asks how to fix
+
+3. **Example warning format:**
+   ```
+   ⚠️  SwiftFormat found formatting issues in X file(s):
+   - FileName.swift: rule1, rule2
+   - OtherFile.swift: rule3
+   
+   Run `swiftformat .` to auto-fix if desired.
+   ```
+
+### When to Run
+- After completing builds
+- After making code edits
+- Before declaring work "complete"
+- Any time code changes are made
+
+### Important Rules
+- This is a **CHECK ONLY** - no automatic fixes
+- Warnings should not block other work
+- User decides whether to run formatter
+- Applies to all Swift code changes
+
 ## Code Style Guidelines
 
 ### Imports

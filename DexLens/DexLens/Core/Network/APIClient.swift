@@ -48,7 +48,7 @@ final class APIClient: APIClientProtocol {
                 throw NetworkError.invalidResponse
             }
 
-            guard (200...299).contains(httpResponse.statusCode) else {
+            guard (200 ... 299).contains(httpResponse.statusCode) else {
                 throw NetworkError.serverError(statusCode: httpResponse.statusCode)
             }
 

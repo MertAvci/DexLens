@@ -75,7 +75,7 @@ final class DIContainer {
         let key = ObjectIdentifier(type)
         services[key] = instance
     }
-    
+
     /// Configures and registers all app-wide dependencies.
     ///
     /// This method acts as the app's **composition root** and should be called
@@ -91,7 +91,6 @@ final class DIContainer {
         let perpetualService = HyperliquidPerpetualService(apiClient: apiClient)
         register(PerpetualServiceProtocol.self, instance: perpetualService)
     }
-
 
     /// Resolves a previously registered dependency.
     ///

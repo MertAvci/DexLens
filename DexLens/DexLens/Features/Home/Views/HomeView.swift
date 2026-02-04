@@ -2,26 +2,24 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
-    
+
     init(viewModel: HomeViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
-            
-                    VStack {
-                        ScrollView {
-                            LazyVStack(spacing: 12) {
-                                ForEach(viewModel.coins) { coin in
-                                    CoinRow(coin: coin)
-                                }
+                VStack {
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(viewModel.coins) { coin in
+                                CoinRow(coin: coin)
                             }
-                            .padding()
                         }
+                        .padding()
                     }
-                
+                }
             }
             .navigationTitle("Top 20 Coins")
             .task {
@@ -48,11 +46,11 @@ struct HomeView: View {
 
 struct CoinRow: View {
     let coin: Coin
-    
+
     var body: some View {
         HStack(spacing: 12) {
             coinImage
-            
+
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text(coin.name)
@@ -83,8 +81,7 @@ struct CoinRow: View {
                 .stroke(Color.border, lineWidth: 1)
         )
     }
-    
-    @ViewBuilder
+
     private var coinImage: some View {
         Group {
             if let imageURL = coin.imageURL {

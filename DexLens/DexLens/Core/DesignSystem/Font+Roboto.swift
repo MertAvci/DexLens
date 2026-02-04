@@ -1,9 +1,8 @@
 import SwiftUI
 
 extension Font {
-    
     static func roboto(_ size: CGFloat, weight: RobotoWeight = .regular) -> Font {
-        return Font.custom(weight.fontName, size: size)
+        Font.custom(weight.fontName, size: size)
     }
 }
 
@@ -14,21 +13,21 @@ enum RobotoWeight {
     case medium
     case bold
     case black
-    
+
     var fontName: String {
         switch self {
         case .thin:
-            return "Roboto-Thin"
+            "Roboto-Thin"
         case .light:
-            return "Roboto-Light"
+            "Roboto-Light"
         case .regular:
-            return "Roboto-Regular"
+            "Roboto-Regular"
         case .medium:
-            return "Roboto-Medium"
+            "Roboto-Medium"
         case .bold:
-            return "Roboto-Bold"
+            "Roboto-Bold"
         case .black:
-            return "Roboto-Black"
+            "Roboto-Black"
         }
     }
 }

@@ -1,0 +1,18 @@
+# DexLens SwiftFormat Configuration
+# Based on project code style guidelines
+
+--indent 4                           # 4 spaces per AGENTS.md
+--max-width 120                         # 120 characters per AGENTS.md
+--disable semicolons                   # Project doesn't use semicolons
+--disable elseOnSameLine                # Place else on new line
+--enable redundantSelf                  # Keep explicit self for clarity
+--self remove                         # Remove redundant self where not needed
+--exclude Pods,Build,DerivedData       # Exclude generated files
+--swift-version 5.9                   # Swift version for iOS development
+
+# File exclusions for specific patterns
+--exclude "*.generated.swift"
+--exclude "*.pbxproj"
+
+# Preserve existing code patterns
+--disable wrap                        # Don't reorganize existing code structure

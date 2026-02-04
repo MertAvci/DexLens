@@ -8,7 +8,7 @@ extension LinearGradient {
             endPoint: .bottomTrailing
         )
     }
-    
+
     static var successGradient: LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [.success.opacity(0.8), .surface]),
@@ -16,7 +16,7 @@ extension LinearGradient {
             endPoint: .bottomTrailing
         )
     }
-    
+
     static var deepOceanGradient: LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [.primary, .surface]),
@@ -24,7 +24,7 @@ extension LinearGradient {
             endPoint: .bottomTrailing
         )
     }
-    
+
     static func deepOceanGradient(opacity: Double = 1.0) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [.primary.opacity(opacity), .surface.opacity(opacity)]),

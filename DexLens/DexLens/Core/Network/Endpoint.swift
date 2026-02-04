@@ -18,26 +18,26 @@ protocol Endpoint {
 extension Endpoint {
     var url: URL? {
         var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)
-        
-        if method == .get, let parameters = parameters {
+
+        if method == .get, let parameters {
             components?.queryItems = parameters.map { key, value in
                 URLQueryItem(name: key, value: "\(value)")
             }
         }
-        
+
         return components?.url
     }
-    
+
     var urlRequest: URLRequest? {
-        guard let url = url else { return nil }
+        guard let url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        
-        if method != .get, let parameters = parameters {
+
+        if method != .get, let parameters {
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
         }
-        
+
         return request
     }
 }

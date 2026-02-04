@@ -17,11 +17,11 @@ enum NetworkError: Error, LocalizedError {
             "Invalid URL"
         case .invalidResponse:
             "Invalid response"
-        case .serverError(let statusCode):
+        case let .serverError(statusCode):
             "Server error with status code: \(statusCode)"
-        case .decodingError(let error):
+        case let .decodingError(error):
             "Failed to decode response: \(error.localizedDescription)"
-        case .networkError(let error):
+        case let .networkError(error):
             "Network error: \(error.localizedDescription)"
         }
     }

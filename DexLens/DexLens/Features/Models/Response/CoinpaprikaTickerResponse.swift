@@ -7,7 +7,7 @@ struct CoinpaprikaTickerResponse: Codable {
     let rank: Int
     let quotes: [String: Quote]
     let lastUpdated: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -26,7 +26,7 @@ struct Quote: Codable {
     let percentChange24h: Double
     let athPrice: Double?
     let athDate: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case price
         case marketCap = "market_cap"
