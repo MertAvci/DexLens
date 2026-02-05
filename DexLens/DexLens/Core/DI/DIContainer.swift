@@ -65,6 +65,10 @@ final class DIContainer {
     ///
     /// This method acts as the app's **composition root** and should be called
     /// once during app startup.
+    ///
+    /// Marked as @MainActor because it creates MainActor-isolated services (WalletRepository,
+    /// WalletClassificationService, etc.)
+    @MainActor
     func configure() {
         let apiClient = APIClient()
 
@@ -72,6 +76,8 @@ final class DIContainer {
 
         let homeService = HomeService(apiClient: apiClient)
         register(HomeServiceProtocol.self, instance: homeService)
+
+        // MARK: - Perpetuals Service
 
         let perpetualService = HyperliquidPerpetualService(apiClient: apiClient)
         register(PerpetualServiceProtocol.self, instance: perpetualService)
@@ -84,9 +90,22 @@ final class DIContainer {
         let walletRepository = WalletRepositoryImpl(persistenceController: persistenceController)
         register(WalletRepository.self, instance: walletRepository)
 
-        let walletDiscoveryService = WalletDiscoveryService(
+        // GMX Discovery Service
+        let gmxDiscoveryService = GMXDiscoveryService(apiClient: apiClient)
+        register(GMXDiscoveryServiceProtocol.self, instance: gmxDiscoveryService)
+
+        // Classification service must be registered before discovery service
+        let walletClassificationService = WalletClassificationService(
             apiClient: apiClient,
             repository: walletRepository
+        )
+        register(WalletClassificationServiceProtocol.self, instance: walletClassificationService)
+
+        let walletDiscoveryService = WalletDiscoveryService(
+            apiClient: apiClient,
+            repository: walletRepository,
+            classificationService: walletClassificationService,
+            gmxService: gmxDiscoveryService
         )
         register(WalletDiscoveryServiceProtocol.self, instance: walletDiscoveryService)
     }

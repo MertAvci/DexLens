@@ -5,12 +5,12 @@
 //  Created by Mert Avci on 2026-02-03.
 //
 
-import BackgroundTasks
 import SwiftUI
 
 @main
 struct DexLensApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var isInitialized = false
 
     init() {
         DIContainer.shared.configure()
@@ -20,87 +20,37 @@ struct DexLensApp: App {
         WindowGroup {
             ContentView()
         }
-    }
-}
-
-// MARK: - App Delegate
-
-/// AppDelegate for handling background tasks and lifecycle events.
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
-        registerBackgroundTasks()
-        return true
-    }
-
-    func applicationDidEnterBackground(_: UIApplication) {
-        scheduleWalletDiscoveryBackgroundTask()
-    }
-
-    func applicationDidBecomeActive(_: UIApplication) {
-        // Start discovery when app becomes active
-        Task {
-            let discoveryService: WalletDiscoveryServiceProtocol = DIContainer.shared.resolve(
-                WalletDiscoveryServiceProtocol.self
-            )
-            _ = await discoveryService.discoverWallets(fromCoins: [])
+        .onChange(of: scenePhase) { _, newPhase in
+            handleScenePhaseChange(newPhase)
+        }
+        .backgroundTask(.appRefresh("com.dexlens.walletdiscovery")) {
+            // Background refresh task - runs every 15 minutes
+            await performWalletDiscovery()
         }
     }
 
-    // MARK: - Background Tasks
+    // MARK: - Scene Phase Handling
 
-    private func registerBackgroundTasks() {
-        BGTaskScheduler.shared.register(
-            forTaskWithIdentifier: "com.dexlens.walletdiscovery",
-            using: nil
-        ) { [weak self] task in
-            self?.handleWalletDiscoveryBackgroundTask(task)
-        }
-    }
-
-    private func scheduleWalletDiscoveryBackgroundTask() {
-        let request = BGAppRefreshTaskRequest(identifier: "com.dexlens.walletdiscovery")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60) // 15 minutes
-
-        do {
-            try BGTaskScheduler.shared.submit(request)
-        } catch {
-            print("Could not schedule wallet discovery: \(error)")
-        }
-    }
-
-    private func handleWalletDiscoveryBackgroundTask(_ task: BGTask) {
-        scheduleWalletDiscoveryBackgroundTask() // Schedule next task
-
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-
-        let discoveryOperation = BlockOperation { [weak self] in
-            guard let self else { return }
-
-            let semaphore = DispatchSemaphore(value: 0)
-
+    private func handleScenePhaseChange(_ phase: ScenePhase) {
+        switch phase {
+        case .active:
             Task {
-                let discoveryService: WalletDiscoveryServiceProtocol = DIContainer.shared.resolve(
-                    WalletDiscoveryServiceProtocol.self
-                )
-                _ = await discoveryService.discoverWallets(fromCoins: [])
-                semaphore.signal()
+                await performWalletDiscovery()
             }
-
-            semaphore.wait()
+        case .background:
+            // App entered background - backgroundTask handles scheduling
+            break
+        default:
+            break
         }
+    }
 
-        task.expirationHandler = {
-            queue.cancelAllOperations()
-        }
+    // MARK: - Wallet Discovery
 
-        discoveryOperation.completionBlock = {
-            task.setTaskCompleted(success: !discoveryOperation.isCancelled)
-        }
-
-        queue.addOperations([discoveryOperation], waitUntilFinished: false)
+    private func performWalletDiscovery() async {
+        let discoveryService: WalletDiscoveryServiceProtocol = DIContainer.shared.resolve(
+            WalletDiscoveryServiceProtocol.self
+        )
+        _ = await discoveryService.discoverWalletsCombined()
     }
 }

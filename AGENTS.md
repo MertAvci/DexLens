@@ -172,3 +172,104 @@ Core/
 - Never commit API keys or secrets
 - Do not use `git add -i` or interactive git commands
 - Follow existing commit message style when committing
+
+## SwiftUI Best Practices
+
+### App Entry Point (DexLensApp.swift)
+
+**Use SwiftUI-Native Patterns Only:**
+- **NEVER** use `@UIApplicationDelegateAdaptor` or `UIApplicationDelegate`
+- Use `@main struct DexLensApp: App` directly
+- Handle all lifecycle through SwiftUI modifiers
+
+**Lifecycle Management:**
+```swift
+@main
+struct DexLensApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            switch newPhase {
+            case .active:
+                // App became active
+            case .background:
+                // App entered background
+            default:
+                break
+            }
+        }
+    }
+}
+```
+
+**Background Tasks:**
+```swift
+.backgroundTask(.appRefresh("com.example.task")) {
+    // Background refresh logic
+}
+```
+
+**Dependency Injection:**
+```swift
+// Use .task modifier for initialization
+.task {
+    DIContainer.shared.configure()
+}
+```
+
+### ScenePhase Usage
+
+**Available Phases:**
+- `.active` - App is in foreground and interactive
+- `.inactive` - App is visible but not interactive (e.g., incoming call)
+- `.background` - App is not visible
+
+**Best Practices:**
+- Use `.onChange(of: scenePhase)` for lifecycle reactions
+- Never use `UIApplication.shared` or `AppDelegate` methods
+- Keep ScenePhase handling in the App struct, not in views
+
+### Background Refresh
+
+**SwiftUI-Native Approach:**
+```swift
+@main
+struct DexLensApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        .backgroundTask(.appRefresh("com.dexlens.walletdiscovery")) {
+            await performBackgroundDiscovery()
+        }
+    }
+}
+```
+
+**Configuration Required:**
+- Add "BGTaskSchedulerPermittedIdentifiers" array to Info.plist
+- Include your task identifier (e.g., "com.dexlens.walletdiscovery")
+- Set minimum interval in capabilities
+
+### What NOT to Use
+
+❌ **Avoid these UIKit patterns:**
+- `@UIApplicationDelegateAdaptor`
+- `UIApplicationDelegate` protocol
+- `application(_:didFinishLaunchingWithOptions:)`
+- `applicationDidBecomeActive(_:)`
+- `applicationDidEnterBackground(_:)`
+- `BGTaskScheduler.shared.register()`
+- `UIApplication.shared` singleton
+- `NotificationCenter` for app lifecycle
+
+✅ **Use these SwiftUI patterns instead:**
+- `@Environment(\.scenePhase)`
+- `.onChange(of: scenePhase)`
+- `.backgroundTask(_:)`
+- `.task` modifier
+- `Task` and `TaskGroup` for async work

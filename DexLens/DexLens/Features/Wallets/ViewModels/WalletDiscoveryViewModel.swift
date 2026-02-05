@@ -61,7 +61,7 @@ final class WalletDiscoveryViewModel: ObservableObject {
         isDiscovering = true
 
         Task {
-            let discovered = await discoveryService.discoverWallets(fromCoins: [])
+            let discovered = await discoveryService.discoverWalletsCombined()
 
             self.lastDiscoveredCount = discovered
             self.isDiscovering = false
@@ -113,9 +113,10 @@ final class WalletDiscoveryViewModel: ObservableObject {
         NotificationCenter.default.publisher(for: .walletsDiscovered)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] notification in
-                guard let count = notification.object as? Int else { return }
+                guard let userInfo = notification.object as? [String: Int],
+                      let discoveredCount = userInfo["discovered"] else { return }
 
-                self?.lastDiscoveredCount = count
+                self?.lastDiscoveredCount = discoveredCount
                 self?.showDiscoveryBanner = true
                 self?.scheduleBannerDismiss()
 
