@@ -29,9 +29,22 @@
 		ABC17F582F31FEF60029468B /* DexLensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DexLensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ABC181702F34ACEB0029468B /* Exceptions for "DexLens" folder in "DexLens" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = ABC17F402F31FEF40029468B /* DexLens */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		ABC17F432F31FEF40029468B /* DexLens */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ABC181702F34ACEB0029468B /* Exceptions for "DexLens" folder in "DexLens" target */,
+			);
 			path = DexLens;
 			sourceTree = "<group>";
 		};
@@ -400,6 +413,7 @@
 				DEVELOPMENT_TEAM = YXKR3QY58S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DexLens/Info.plist;
 				INFOPLIST_KEY_UIAppFonts = "Roboto-Thin.ttf Roboto-Light.ttf Roboto-Regular.ttf Roboto-Medium.ttf Roboto-Bold.ttf Roboto-Black.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -433,6 +447,7 @@
 				DEVELOPMENT_TEAM = YXKR3QY58S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DexLens/Info.plist;
 				INFOPLIST_KEY_UIAppFonts = "Roboto-Thin.ttf Roboto-Light.ttf Roboto-Regular.ttf Roboto-Medium.ttf Roboto-Bold.ttf Roboto-Black.ttf";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

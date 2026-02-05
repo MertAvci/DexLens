@@ -76,52 +76,50 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
             endingLineNumber = "121"
-            landmarkName = "createWallets(addresses:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A8740815-DC3F-498A-936A-F9898EC073EF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DexLens/Features/Wallets/ViewModels/WalletDiscoveryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "refresh()"
+            landmarkName = "createWallet(address:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A8740815-DC3F-498A-936A-F9898EC073EF - 8ab656f2d4926815"
+                  uuid = "4790961F-C2BF-4C5A-AB0F-EE93FBE2753F - e3c50ddb826e7037"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for DexLens.WalletDiscoveryViewModel.refresh() async -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for DexLens.WalletRepositoryImpl.createWallet(address: Swift.String) async throws -&gt; DexLens.WalletEntity"
                   moduleName = "DexLens.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mertavci/Appar/DexLens/DexLens/DexLens/DexLens/Features/Wallets/ViewModels/WalletDiscoveryViewModel.swift"
+                  urlString = "file:///Users/mertavci/Appar/DexLens/DexLens/DexLens/DexLens/Features/Wallets/Repository/WalletRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107">
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
                </Location>
                <Location
-                  uuid = "A8740815-DC3F-498A-936A-F9898EC073EF - 7b3cd51af94a4e00"
+                  uuid = "4790961F-C2BF-4C5A-AB0F-EE93FBE2753F - ab969fbe445bed4e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for DexLens.WalletDiscoveryViewModel.refresh() async -&gt; ()"
+                  symbolName = "DexLens.WalletRepositoryImpl.__allocating_init(persistenceController: DexLens.PersistenceController) -&gt; DexLens.WalletRepositoryImpl"
                   moduleName = "DexLens.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mertavci/Appar/DexLens/DexLens/DexLens/DexLens/Features/Wallets/ViewModels/WalletDiscoveryViewModel.swift"
+                  urlString = "file:///Users/mertavci/Appar/DexLens/DexLens/DexLens/DexLens/Features/Wallets/Repository/WalletRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107">
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "4790961F-C2BF-4C5A-AB0F-EE93FBE2753F - 72b1851a5ea34c53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DexLens.WalletRepositoryImpl.init(persistenceController: DexLens.PersistenceController) -&gt; DexLens.WalletRepositoryImpl"
+                  moduleName = "DexLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mertavci/Appar/DexLens/DexLens/DexLens/DexLens/Features/Wallets/Repository/WalletRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -145,16 +143,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "246D2AA0-6B2B-41F5-A6FE-04694DCD6325"
+            uuid = "07212920-D212-4661-BC9C-7F9CAEFAB61A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DexLens/Features/Wallets/Services/WalletDiscoveryService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "discoverWallets(fromCoins:)"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "discoverWalletsCombined()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "519D8EA3-5E31-449F-8DCC-13AFB836F7E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/GMXDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "discoverWalletsFromPositions()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9322252A-5659-4B22-97E4-20D365C9292A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/GMXDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "GMXDiscoveryService"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67CC416F-1E45-4B03-986A-566437AD1429"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/WalletDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "discoverWalletsCombined()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F286F3E2-4552-4DC6-910A-C3F8C1315B8B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/WalletDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "processBatch(addresses:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE784D44-4B99-4B08-B11F-699E76877020"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/WalletDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "processBatch(addresses:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C54C9522-FED6-44C9-9413-54C2C2795069"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DexLens/Features/Wallets/Services/WalletDiscoveryService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "processBatch(addresses:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

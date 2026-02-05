@@ -48,11 +48,16 @@ final class PersistenceController {
             forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
         )
 
+        // Use semaphore to make async load synchronous
+        // This ensures stores are fully loaded before returning
+        let semaphore = DispatchSemaphore(value: 0)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved Core Data error: \(error), \(error.userInfo)")
             }
+            semaphore.signal()
         }
+        semaphore.wait() // Block until stores are loaded
 
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
