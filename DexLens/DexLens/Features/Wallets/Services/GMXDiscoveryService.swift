@@ -7,7 +7,7 @@ import Foundation
 /// Future Option B: Implement liquidation detection by caching and comparing positions over time.
 protocol GMXDiscoveryServiceProtocol {
     /// The API client for making network requests
-    var apiClient: APIClientProtocol { get }
+    var apiClient: NetworkClientProtocol { get }
 
     /// Fetches all open positions from GMX
     /// - Parameter minSizeUsd: Optional minimum position size in USD (nil = no filter)
@@ -29,7 +29,7 @@ protocol GMXDiscoveryServiceProtocol {
 /// 2. Comparing current positions to cached positions
 /// 3. Detecting positions that disappeared or have sizeInUsd = 0
 final class GMXDiscoveryService: GMXDiscoveryServiceProtocol {
-    let apiClient: APIClientProtocol
+    let apiClient: NetworkClientProtocol
 
     /// Rate limiting: minimum interval between requests (1 second)
     private let minRequestInterval: TimeInterval = 1.0
@@ -37,7 +37,7 @@ final class GMXDiscoveryService: GMXDiscoveryServiceProtocol {
 
     /// Initializes the discovery service with required dependencies
     /// - Parameter apiClient: The API client for network requests
-    init(apiClient: APIClientProtocol) {
+    init(apiClient: NetworkClientProtocol) {
         self.apiClient = apiClient
     }
 

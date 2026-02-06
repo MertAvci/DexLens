@@ -50,7 +50,7 @@ protocol WalletDiscoveryServiceProtocol {
 final class WalletDiscoveryService: WalletDiscoveryServiceProtocol {
     let batchSize: Int = 20
 
-    private let apiClient: APIClientProtocol
+    private let apiClient: NetworkClientProtocol
     private let repository: WalletRepository
     private let classificationService: WalletClassificationServiceProtocol
     private let gmxService: GMXDiscoveryServiceProtocol
@@ -62,7 +62,7 @@ final class WalletDiscoveryService: WalletDiscoveryServiceProtocol {
     ///   - classificationService: The service for classifying discovered wallets
     ///   - gmxService: The GMX discovery service
     init(
-        apiClient: APIClientProtocol,
+        apiClient: NetworkClientProtocol,
         repository: WalletRepository,
         classificationService: WalletClassificationServiceProtocol,
         gmxService: GMXDiscoveryServiceProtocol

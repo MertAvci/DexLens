@@ -1,5 +1,5 @@
 import Foundation
 
 protocol ServiceProtocol {
-    var apiClient: APIClientProtocol { get }
+    var apiClient: NetworkClientProtocol { get }
 }

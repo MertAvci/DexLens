@@ -59,9 +59,9 @@ private enum MockPositions {
 /// Note: Currently uses mock data for demonstration
 /// TODO: Replace with real GMX data aggregation when implementing full Perpetuals feature
 final class HyperliquidPerpetualService: ServiceProtocol, PerpetualServiceProtocol {
-    let apiClient: APIClientProtocol
+    let apiClient: NetworkClientProtocol
 
-    init(apiClient: APIClientProtocol) {
+    init(apiClient: NetworkClientProtocol) {
         self.apiClient = apiClient
     }
 

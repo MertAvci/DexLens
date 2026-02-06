@@ -70,16 +70,16 @@ final class DIContainer {
     /// WalletClassificationService, etc.)
     @MainActor
     func configure() {
-        let apiClient = APIClient()
+        let networkClient = NetworkClient()
 
-        register(APIClientProtocol.self, instance: apiClient)
+        register(NetworkClientProtocol.self, instance: networkClient)
 
-        let homeService = HomeService(apiClient: apiClient)
+        let homeService = HomeService(apiClient: networkClient)
         register(HomeServiceProtocol.self, instance: homeService)
 
         // MARK: - Perpetuals Service
 
-        let perpetualService = HyperliquidPerpetualService(apiClient: apiClient)
+        let perpetualService = HyperliquidPerpetualService(apiClient: networkClient)
         register(PerpetualServiceProtocol.self, instance: perpetualService)
 
         // MARK: - Wallet Discovery Infrastructure
@@ -91,18 +91,18 @@ final class DIContainer {
         register(WalletRepository.self, instance: walletRepository)
 
         // GMX Discovery Service
-        let gmxDiscoveryService = GMXDiscoveryService(apiClient: apiClient)
+        let gmxDiscoveryService = GMXDiscoveryService(apiClient: networkClient)
         register(GMXDiscoveryServiceProtocol.self, instance: gmxDiscoveryService)
 
         // Classification service must be registered before discovery service
         let walletClassificationService = WalletClassificationService(
-            apiClient: apiClient,
+            apiClient: networkClient,
             repository: walletRepository
         )
         register(WalletClassificationServiceProtocol.self, instance: walletClassificationService)
 
         let walletDiscoveryService = WalletDiscoveryService(
-            apiClient: apiClient,
+            apiClient: networkClient,
             repository: walletRepository,
             classificationService: walletClassificationService,
             gmxService: gmxDiscoveryService

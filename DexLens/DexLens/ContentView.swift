@@ -61,7 +61,7 @@ struct ContentView: View {
             type: .success,
             title: "Wallets Discovered",
             message: "\(discoveredWalletCount) new wallet\(discoveredWalletCount == 1 ? "" : "s") found",
-            duration: 5
+            duration: .normal
         )
         .onAppear {
             setupNotificationObserver()
@@ -72,6 +72,11 @@ struct ContentView: View {
                 discoveredWalletCount = walletDiscoveryViewModel.lastDiscoveredCount
             }
         }
+        #if DEBUG
+            .task {
+                await triggerPreviewBanner()
+            }
+        #endif
     }
 
     // MARK: - Private Methods
@@ -90,8 +95,16 @@ struct ContentView: View {
             }
         }
     }
+    
+#if DEBUG
+private func triggerPreviewBanner() async {
+    try? await Task.sleep(nanoseconds: 500_000_000) // 0.5s delay
+    discoveredWalletCount = 3
+    showDiscoveryBanner = true
+}
+#endif
 }
 
-#Preview {
+#Preview("Wallets Discovered") {
     ContentView()
 }
