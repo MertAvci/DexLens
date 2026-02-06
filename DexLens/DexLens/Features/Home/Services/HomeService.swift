@@ -1,14 +1,14 @@
 import Foundation
 
 final class HomeService: ServiceProtocol, HomeServiceProtocol {
-    let apiClient: APIClientProtocol
+    let apiClient: NetworkClientProtocol
 
-    init(apiClient: APIClientProtocol) {
+    init(apiClient: NetworkClientProtocol) {
         self.apiClient = apiClient
     }
 
     func fetchTopCoins(limit: Int = 20) async throws -> [Coin] {
-        let response: [CoinpaprikaTickerResponse] = try await apiClient.fetch(endpoint: CoinpaprikaEndpoint.tickers)
+        let response: [CoinpaprikaTickerResponse] = try await apiClient.fetch(endpoint: CoinpaprikaEndpoint.tickers(fiat: .usd))
 
         let filtered = response.filter { $0.quotes["USD"] != nil }
         let sorted = filtered.sorted { $0.quotes["USD"]!.marketCap > $1.quotes["USD"]!.marketCap }

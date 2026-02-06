@@ -3,7 +3,7 @@ import SwiftUI
 extension LinearGradient {
     static var primaryGradient: LinearGradient {
         LinearGradient(
-            gradient: Gradient(colors: [Color("dsPrimaryMuted"), Color("dsPrimary")]),
+            gradient: Gradient(colors: [.primaryMuted, .primary]),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )

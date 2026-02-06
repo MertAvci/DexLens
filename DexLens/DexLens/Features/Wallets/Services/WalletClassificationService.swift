@@ -9,7 +9,7 @@ import Foundation
 @MainActor
 protocol WalletClassificationServiceProtocol {
     /// The API client for making network requests
-    nonisolated var apiClient: APIClientProtocol { get }
+    nonisolated var apiClient: NetworkClientProtocol { get }
 
     /// The repository for wallet persistence operations
     var repository: WalletRepository { get }
@@ -72,14 +72,14 @@ protocol WalletClassificationServiceProtocol {
 /// Marked as @MainActor because it works with CoreData entities (WalletEntity).
 @MainActor
 final class WalletClassificationService: WalletClassificationServiceProtocol {
-    let apiClient: APIClientProtocol
+    let apiClient: NetworkClientProtocol
     let repository: WalletRepository
 
     /// Initializes the classification service with required dependencies
     /// - Parameters:
     ///   - apiClient: The API client for network requests
     ///   - repository: The repository for wallet persistence
-    init(apiClient: APIClientProtocol, repository: WalletRepository) {
+    init(apiClient: NetworkClientProtocol, repository: WalletRepository) {
         self.apiClient = apiClient
         self.repository = repository
     }

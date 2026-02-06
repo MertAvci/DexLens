@@ -1,7 +1,8 @@
 import Foundation
 
 enum CoinpaprikaEndpoint: Endpoint {
-    case tickers
+
+    case tickers(fiat: FiatCurrency)
     case coinById(String)
 
     var baseURL: URL {
@@ -10,8 +11,11 @@ enum CoinpaprikaEndpoint: Endpoint {
 
     var path: String {
         switch self {
-        case .tickers: "/tickers"
-        case let .coinById(id): "/coins/\(id)"
+        case .tickers:
+            return "/tickers"
+
+        case let .coinById(id):
+            return "/coins/\(id)"
         }
     }
 
@@ -25,8 +29,13 @@ enum CoinpaprikaEndpoint: Endpoint {
 
     var parameters: [String: Any]? {
         switch self {
-        case .tickers: ["quotes": "USD"]
-        case .coinById: nil
+        case let .tickers(fiat):
+            return [
+                "quotes": fiat.rawValue
+            ]
+
+        case .coinById:
+            return nil
         }
     }
 }
