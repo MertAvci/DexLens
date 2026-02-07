@@ -10,8 +10,8 @@ final class HomeService: ServiceProtocol, HomeServiceProtocol {
     func fetchTopCoins(limit: Int = 20) async throws -> [Coin] {
         let response: [CoinpaprikaTickerResponse] = try await apiClient.fetch(endpoint: CoinpaprikaEndpoint.tickers(fiat: .usd))
 
-        let filtered = response.filter { $0.quotes["USD"] != nil }
-        let sorted = filtered.sorted { $0.quotes["USD"]!.marketCap > $1.quotes["USD"]!.marketCap }
+        let filtered = response.filter { $0.quotes[FiatCurrency.usd.rawValue] != nil }
+        let sorted = filtered.sorted { $0.quotes[FiatCurrency.usd.rawValue]!.marketCap > $1.quotes[FiatCurrency.usd.rawValue]!.marketCap }
         let topCoins = Array(sorted.prefix(limit))
 
         return topCoins.map { mapToDomain($0) }
@@ -28,7 +28,7 @@ final class HomeService: ServiceProtocol, HomeServiceProtocol {
     }
 
     private func mapToDomain(_ response: CoinpaprikaTickerResponse) -> Coin {
-        guard let usdQuote = response.quotes["USD"] else {
+        guard let usdQuote = response.quotes[FiatCurrency.usd.rawValue] else {
             fatalError("USD quote not found")
         }
         return Coin(
@@ -45,16 +45,5 @@ final class HomeService: ServiceProtocol, HomeServiceProtocol {
             athDate: usdQuote.athDate,
             lastUpdated: response.lastUpdated
         )
-    }
-}
-
-enum FiatCurrency: String {
-    case usd = "USD"
-
-    var signatur: String {
-        switch self {
-        case .usd:
-            "$"
-        }
     }
 }
